@@ -4,7 +4,7 @@ from fastapi.responses import StreamingResponse
 from typing import List
 import pandas as pd
 from io import BytesIO
-
+import os
 app = FastAPI(title="Excel & CSV Merger API")
 
 from fastapi import Form
@@ -66,3 +66,8 @@ async def merge_uploaded_files(files: List[UploadFile] = File(...)):
             "Content-Disposition": "attachment; filename=One_workbook.xlsx"
         }
     )
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("backend:app", host="0.0.0.0", port=port)
