@@ -30,6 +30,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.get("/")
+def root():
+    return {"status": "API is running", "message": "Use /api/login/ and /api/upload/"}
 
 # ---- FILE MERGE ENDPOINT ----
 @app.post("/api/upload/")
